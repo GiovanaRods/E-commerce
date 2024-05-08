@@ -16,8 +16,7 @@ public class Menu {
 
 		String produto, tamanho, cor;
 		int codIDProduto, opcao;
-		float valor;
-
+		
 		while (true) {
 
 			System.out.println(Cores.TEXT_YELLOW + "*****************************************************");
@@ -35,7 +34,8 @@ public class Menu {
 
 			try {
 				opcao = leia.nextInt();
-			} catch (InputMismatchException e) {
+			}
+			 catch (InputMismatchException e) {
 				System.out.println("\nDigite valores inteiros!");
 				leia.nextLine();
 				opcao = 0;
@@ -51,21 +51,22 @@ public class Menu {
 
 			case 1:
 				System.out.println("Cadastrar Produto");
-				System.out.println("Digite o código do Produto: ");
-				codIDProduto = leia.nextInt();
+				
+				leia.nextLine();
 				
 				System.out.println("Digite o nome do kimono: ");
 				produto = leia.nextLine();
-				leia.skip("\\R?");
 
 				System.out.println("Digite o tamanho: ");
 				tamanho = leia.nextLine();
-				leia.skip("\\R?");
 
 				System.out.println("Digite a cor: ");
 				cor = leia.nextLine();
-				leia.skip("\\R?");
-				ecommerce.cadastrar(new EcommerceProdutos(ecommerce.gerarcodIDProduto(), produto, tamanho, cor));
+				
+				System.out.println("Digite o código do Produto: ");
+				codIDProduto = leia.nextInt();
+				
+				ecommerce.cadastrar (new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
 				keyPress();
 				break;
 
@@ -82,29 +83,35 @@ public class Menu {
 				ecommerce.procurarPorID(codIDProduto);
 				keyPress();
 				break;
-
-			case 4:
+								
+				case 4:
+					
 				System.out.println("Atualizar Dados do Produto");
+				System.out.println("Digite o código do Produto que deseja atualizar: ");
 				codIDProduto = leia.nextInt();
 
 				var buscaProduto = ecommerce.buscarNaCollection(codIDProduto);
 
 				if (buscaProduto != null) {
 
+					leia.nextLine();
+
 					System.out.println("Digite o nome do kimono: ");
 					produto = leia.nextLine();
+					
 					System.out.println("Digite o tamanho: ");
 					tamanho = leia.nextLine();
-					leia.skip("\\R?");
 
 					System.out.println("Digite a cor: ");
 					cor = leia.nextLine();
-					leia.skip("\\R?");
-				}
+					
+					ecommerce.atualizar (new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
+				} else
+				System.out.println("\nProduto não encontrado!");
 				keyPress();
 				break;
 
-			case 6:
+			case 5:
 				System.out.println("Apagar Produto");
 				System.out.println("Digite o número do ID do Produto: ");
 				codIDProduto = leia.nextInt();
@@ -112,7 +119,7 @@ public class Menu {
 				keyPress();
 				break;
 
-			case 7:
+			case 6:
 				System.out.println("Formas de Pagamento");
 				System.out.println("Cartão de Débito e Crédito");
 				System.out.println("Pix");
