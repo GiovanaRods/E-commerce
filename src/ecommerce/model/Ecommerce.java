@@ -2,36 +2,74 @@ package ecommerce.model;
 
 public abstract class Ecommerce {
 
-	private String usuario;
-	private String email;
+	private String tamanho;
 	private String produto;
-	private String telefone;
+	private String cor;
 	private float valor;
+	private int codIDProduto;
 
-	public Ecommerce(String usuario, String email, String produto, String telefone, float valor) {
+	public Ecommerce(String produto, String tamanho, String cor, float valor) {
 		super();
-		this.usuario = usuario;
-		this.email = email;
+		this.tamanho = tamanho;
 		this.produto = produto;
-		this.telefone = telefone;
+		this.cor = cor;
 		this.valor = valor;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	
+	
+
+	public Ecommerce(String tamanho, String cor) {
+		super();
+		this.tamanho = tamanho;
+		this.cor = cor;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+
+
+
+	public String getTamanho() {
+		return tamanho;
 	}
 
-	public String getEmail() {
-		return email;
+
+
+
+	public void setTamanho(String tamanho) {
+		this.tamanho = tamanho;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+
+
+
+	public String getCor() {
+		return cor;
 	}
+
+
+
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+
+
+
+	public Ecommerce(int codIDProduto) {
+		super();
+		this.codIDProduto = codIDProduto;
+	}
+
+	public int getCodIDProduto() {
+		return codIDProduto;
+	}
+
+	public void setCodIDProduto(int codIDProduto) {
+		this.codIDProduto = codIDProduto;
+	}
+
+	
 
 	public String getProduto() {
 		return produto;
@@ -41,13 +79,7 @@ public abstract class Ecommerce {
 		this.produto = produto;
 	}
 
-	public String getTelefone() {
-		return telefone;
-	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
 
 	public float getValor() {
 		return valor;
