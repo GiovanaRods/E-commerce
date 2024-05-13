@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac791d41-a775-4e37-8ff8-a2dfaf5a6399" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ecommerce/controller/EcommerceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ecommerce/controller/EcommerceController.java" afterDir="false" />
-    </list>
+    <list default="true" id="ac791d41-a775-4e37-8ff8-a2dfaf5a6399" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,16 +21,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.MenuUsuario.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/usuario/Documentos/Pessoal/1 - Project-CRUD-Hibernate-JSF-PrimeFaces"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.MenuUsuario.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/usuario/Documentos/Pessoal/1 - Project-CRUD-Hibernate-JSF-PrimeFaces&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="MenuUsuario" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ecommerce.MenuUsuario" />

@@ -55,6 +55,20 @@ public class EcommerceController implements EcommerceRepository {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	public void apagarUsuario(int usuario) {
+		var cadastro = buscarNaCollectionUsuario(usuario);
+
+		if (usuario == cadastro.getUsuario()) {
+			usuarios.remove(cadastro);
+				System.out.println("\nO cadastro numero: " + usuario + " foi deletado com sucesso!");
+			} else {
+				System.out.println("\nO cadastro numero: " + usuario + " não foi encontrado!");
+			}
+		}
+
+>>>>>>> 74f86acbc68933b85fc1227243fb576c4e56a790
 	@Override
 	public void apagarProduto(int codIDProduto) {
 		var produto = buscarNaCollection(codIDProduto);
@@ -68,6 +82,7 @@ public class EcommerceController implements EcommerceRepository {
 
 	}
 
+<<<<<<< HEAD
 	public void apagarUsuario(int usuario) {
 		var cadastro = buscarNaCollectionUsuario(usuario);
 
@@ -83,6 +98,11 @@ public class EcommerceController implements EcommerceRepository {
 	public EcommerceUsuario buscarNaCollectionUsuario(int usuario) {
 		for (EcommerceUsuario ecommerceUsuario : usuarios) {
 			if (ecommerceUsuario.getUsuario() == usuario) {
+=======
+	public EcommerceUsuario buscarNaCollectionUsuario(int usuario){
+		for (EcommerceUsuario ecommerceUsuario : usuarios){
+			if (ecommerceUsuario.getUsuario() == usuario){
+>>>>>>> 74f86acbc68933b85fc1227243fb576c4e56a790
 				return ecommerceUsuario;
 			} else {
 				System.out.println("O usuario não foi encontrado!");
