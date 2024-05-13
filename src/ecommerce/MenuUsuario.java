@@ -42,7 +42,8 @@ public class MenuUsuario {
 				break;
 
 			case 2:
-				System.out.println("Lista de Produtos\n");
+				System.out.println("Lista de Usuarios\n");
+				menu.listarUsuarios();
 				keyPress();
 				break;
 

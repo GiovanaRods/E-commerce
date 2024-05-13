@@ -13,6 +13,22 @@ public class EcommerceController implements EcommerceRepository {
 
 	private static ArrayList<EcommerceUsuario> usuarios = new ArrayList<EcommerceUsuario>();
 	int usuario;
+	
+	public static ArrayList<EcommerceUsuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public static ArrayList<EcommerceUsuario> setUsuarios() {
+		return usuarios;
+	}
+
+	public static ArrayList<Ecommerce> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public static ArrayList<Ecommerce> setListaProdutos() {
+		return listaProdutos;
+	}
 
 	@Override
 	public void procurarPorID(int codIDProduto) {
@@ -29,6 +45,11 @@ public class EcommerceController implements EcommerceRepository {
 	public void listarProdutos() {
 		for (var produto : listaProdutos) {
 			produto.visualizar();
+		}
+	}
+	public void listarUsuarios() {
+		for (var usuario : usuarios) {
+			usuario.visualizarListaUsuario();
 		}
 	}
 
@@ -55,8 +76,6 @@ public class EcommerceController implements EcommerceRepository {
 		}
 	}
 
-<<<<<<< HEAD
-=======
 	public void apagarUsuario(int usuario) {
 		var cadastro = buscarNaCollectionUsuario(usuario);
 
@@ -68,7 +87,6 @@ public class EcommerceController implements EcommerceRepository {
 			}
 		}
 
->>>>>>> 74f86acbc68933b85fc1227243fb576c4e56a790
 	@Override
 	public void apagarProduto(int codIDProduto) {
 		var produto = buscarNaCollection(codIDProduto);
@@ -82,27 +100,9 @@ public class EcommerceController implements EcommerceRepository {
 
 	}
 
-<<<<<<< HEAD
-	public void apagarUsuario(int usuario) {
-		var cadastro = buscarNaCollectionUsuario(usuario);
-
-		if (usuario == cadastro.getUsuario()) {
-			usuarios.remove(cadastro);
-			System.out.println("\nO cadastro numero: " + usuario + " foi deletado com sucesso!");
-			System.out.println(usuarios.toString());
-		} else {
-			System.out.println("\nO cadastro numero: " + usuario + " não foi encontrado!");
-		}
-	}
-
-	public EcommerceUsuario buscarNaCollectionUsuario(int usuario) {
-		for (EcommerceUsuario ecommerceUsuario : usuarios) {
-			if (ecommerceUsuario.getUsuario() == usuario) {
-=======
 	public EcommerceUsuario buscarNaCollectionUsuario(int usuario){
 		for (EcommerceUsuario ecommerceUsuario : usuarios){
 			if (ecommerceUsuario.getUsuario() == usuario){
->>>>>>> 74f86acbc68933b85fc1227243fb576c4e56a790
 				return ecommerceUsuario;
 			} else {
 				System.out.println("O usuario não foi encontrado!");
@@ -128,10 +128,10 @@ public class EcommerceController implements EcommerceRepository {
 		System.out.println("             	  KIMONOS AGE						");
 		System.out.println("                                                    ");
 		System.out.println("            1 - Cadastrar Usuario					");
-		System.out.println("            2 - Lista de Produtos					");
+		System.out.println("            2 - Lista de Usuarios					");
 		System.out.println("            3 - Adicione seu Produto no Carrinho	");
 		System.out.println("            4 - Delete seu Produto do Carrinho		");
-		System.out.println("            5 - Apagar Cadastro  					");
+		System.out.println("            5 - Apagar Usuario  					");
 		System.out.println("            6 - Comprar								");
 		System.out.println("            7 - Voltar ao Menu						");
 		System.out.println("            9 - Sair								");
@@ -140,7 +140,6 @@ public class EcommerceController implements EcommerceRepository {
 		System.out.println("                                                     " + Cores.TEXT_RESET);
 
 	}
-
 	public int gerarUsuario() {
 		return usuario++;
 	}

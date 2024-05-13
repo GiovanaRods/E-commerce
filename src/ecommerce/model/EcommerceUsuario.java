@@ -48,9 +48,12 @@ public abstract class EcommerceUsuario {
 		this.usuario = usuario;
 	}
 
-	public void visualizar() {
-		
+	public void visualizarListaUsuario() {
+
 		System.out.println("***********************************************************");
-		
-		}
+		System.out.println("Usuario: " + this.usuario);
+		System.out.println("Nome: " + this.nome);
+		System.out.println("E-mail: " + this.email);
+		System.out.println("Telefone: " + this.telefone);
+	}
 }
