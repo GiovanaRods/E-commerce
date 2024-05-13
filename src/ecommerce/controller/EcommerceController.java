@@ -15,21 +15,6 @@ public class EcommerceController implements EcommerceRepository {
 	private static ArrayList<EcommerceUsuario> usuarios = new ArrayList<EcommerceUsuario>();
 	int usuario;
 	
-	public static ArrayList<EcommerceUsuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public static ArrayList<EcommerceUsuario> setUsuarios() {
-		return usuarios;
-	}
-
-	public static ArrayList<Ecommerce> getListaProdutos() {
-		return listaProdutos;
-	}
-
-	public static ArrayList<Ecommerce> setListaProdutos() {
-		return listaProdutos;
-	}
 
 	@Override
 	public void procurarPorID(int codIDProduto) {

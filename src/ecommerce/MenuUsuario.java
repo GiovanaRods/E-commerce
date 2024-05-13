@@ -43,7 +43,6 @@ public class MenuUsuario {
 
 			case 2:
 				System.out.println("Lista de Produtos\n");
-				EcommerceController.getListaProdutos();
 				keyPress();
 				break;
 
