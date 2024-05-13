@@ -16,7 +16,7 @@ public class Menu {
 
 		String produto, tamanho, cor;
 		int codIDProduto, opcao;
-		
+
 		while (true) {
 
 			System.out.println(Cores.TEXT_YELLOW + "*****************************************************");
@@ -28,14 +28,15 @@ public class Menu {
 			System.out.println("            4 - Atualizar Dados do Produto			");
 			System.out.println("            5 - Apagar Produto  					");
 			System.out.println("            6 - Formas de Pagamento					");
+			System.out.println("            7 - Voltar ao Menu						");
 			System.out.println("            9 - Sair								");
 			System.out.println("*****************************************************");
 			System.out.println("Entre com a opção desejada:                          ");
+			System.out.println("                                                     " + Cores.TEXT_RESET);
 
 			try {
 				opcao = leia.nextInt();
-			}
-			 catch (InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				System.out.println("\nDigite valores inteiros!");
 				leia.nextLine();
 				opcao = 0;
@@ -50,10 +51,10 @@ public class Menu {
 			switch (opcao) {
 
 			case 1:
-				System.out.println("Cadastrar Produto");
-				
+				System.out.println("Cadastrar Produto\n");
+
 				leia.nextLine();
-				
+
 				System.out.println("Digite o nome do kimono: ");
 				produto = leia.nextLine();
 
@@ -62,11 +63,11 @@ public class Menu {
 
 				System.out.println("Digite a cor: ");
 				cor = leia.nextLine();
-				
+
 				System.out.println("Digite o código do Produto: ");
 				codIDProduto = leia.nextInt();
-				
-				ecommerce.cadastrar (new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
+
+				ecommerce.cadastrar(new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
 				keyPress();
 				break;
 
@@ -77,16 +78,16 @@ public class Menu {
 				break;
 
 			case 3:
-				System.out.println("Buscar Produto pelo ID");
+				System.out.println("Buscar Produto pelo ID\n");
 				System.out.println("Digite o ID do produto: ");
 				codIDProduto = leia.nextInt();
 				ecommerce.procurarPorID(codIDProduto);
 				keyPress();
 				break;
-								
-				case 4:
-					
-				System.out.println("Atualizar Dados do Produto");
+
+			case 4:
+
+				System.out.println("Atualizar Dados do Produto\n");
 				System.out.println("Digite o código do Produto que deseja atualizar: ");
 				codIDProduto = leia.nextInt();
 
@@ -98,21 +99,21 @@ public class Menu {
 
 					System.out.println("Digite o nome do kimono: ");
 					produto = leia.nextLine();
-					
+
 					System.out.println("Digite o tamanho: ");
 					tamanho = leia.nextLine();
 
 					System.out.println("Digite a cor: ");
 					cor = leia.nextLine();
-					
-					ecommerce.atualizar (new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
+
+					ecommerce.atualizar(new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
 				} else
-				System.out.println("\nProduto não encontrado!");
+					System.out.println("\nProduto não encontrado!");
 				keyPress();
 				break;
 
 			case 5:
-				System.out.println("Apagar Produto");
+				System.out.println("Apagar Produto\n");
 				System.out.println("Digite o número do ID do Produto: ");
 				codIDProduto = leia.nextInt();
 				ecommerce.apagarProduto(codIDProduto);
@@ -120,7 +121,7 @@ public class Menu {
 				break;
 
 			case 6:
-				System.out.println("Formas de Pagamento");
+				System.out.println("Formas de Pagamento: \n");
 				System.out.println("Cartão de Débito e Crédito");
 				System.out.println("Pix");
 				System.out.println("Transferência Bancária");
@@ -134,7 +135,6 @@ public class Menu {
 			default:
 				System.out.println("\nOpção Inválida");
 				break;
-
 			}
 		}
 

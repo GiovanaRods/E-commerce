@@ -1,15 +1,35 @@
 package ecommerce.controller;
 
 import java.util.ArrayList;
-
 import ecommerce.repository.EcommerceRepository;
+import ecommerce.util.Cores;
 import ecommerce.model.Ecommerce;
 import ecommerce.model.EcommerceProdutos;
+import ecommerce.model.EcommerceUsuario;
 
 public class EcommerceController implements EcommerceRepository {
 
-	private ArrayList<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
+	private static ArrayList<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
 	int codIDProduto;
+
+	private static ArrayList<EcommerceUsuario> usuarios = new ArrayList<EcommerceUsuario>();
+	int usuario;
+	
+	public static ArrayList<EcommerceUsuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public static ArrayList<EcommerceUsuario> setUsuarios() {
+		return usuarios;
+	}
+
+	public static ArrayList<Ecommerce> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public static ArrayList<Ecommerce> setListaProdutos() {
+		return listaProdutos;
+	}
 
 	@Override
 	public void procurarPorID(int codIDProduto) {
@@ -33,6 +53,12 @@ public class EcommerceController implements EcommerceRepository {
 	public void cadastrar(Ecommerce produto) {
 		listaProdutos.add(produto);
 		System.out.println("\nO produto número: " + produto.getCodIDProduto() + " foi criado com sucesso!");
+	}
+
+	public void cadastrarUsuario(EcommerceUsuario usuario) {
+		usuarios.add(usuario);
+		System.out.println("\nO cadastro " + usuario.getUsuario() + " foi criado com sucesso!");
+
 	}
 
 	@Override
@@ -59,13 +85,48 @@ public class EcommerceController implements EcommerceRepository {
 
 	}
 
+	public void apagarUsuario(int usuario) {
+		var cadastro = buscarNaCollection(usuario);
+
+		if (usuario != 0) {
+			if (usuarios.remove(cadastro) == true) {
+				System.out.println("\nO cadastro numero: " + usuario + " foi deletado com sucesso!");
+			} else {
+				System.out.println("\nO cadastro numero: " + usuario + " não foi encontrado!");
+			}
+		}
+	}
+
 	public Ecommerce buscarNaCollection(int codIDProduto) {
 		for (var produto : listaProdutos) {
 			if (produto.getCodIDProduto() == codIDProduto) {
 				return produto;
+			} else {
+				System.out.println("O produto não foi encontrado!");
 			}
 		}
-
 		return null;
+
+	}
+
+	public void exibirMenu(int opcao) {
+		System.out.println(Cores.TEXT_YELLOW + "*****************************************************");
+		System.out.println("             	  KIMONOS AGE						");
+		System.out.println("                                                    ");
+		System.out.println("            1 - Cadastrar Usuario					");
+		System.out.println("            2 - Lista de Produtos					");
+		System.out.println("            3 - Adicione seu Produto no Carrinho	");
+		System.out.println("            4 - Delete seu Produto do Carrinho		");
+		System.out.println("            5 - Apagar Cadastro  					");
+		System.out.println("            6 - Comprar								");
+		System.out.println("            7 - Voltar ao Menu						");
+		System.out.println("            9 - Sair								");
+		System.out.println("*****************************************************");
+		System.out.println("Entre com a opção desejada:                          ");
+		System.out.println("                                                     " + Cores.TEXT_RESET);
+
+	}
+	public int gerarUsuario() {
+		return usuario++;
 	}
 }
