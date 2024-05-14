@@ -9,7 +9,7 @@
             <br><br>
         </em>
     <a href="" target="_blank">
-        <img src="https://img.shields.io/static/v1?label=Author&message=Bruno&color=00ba6d&style=for-the-badge&logo=LinkedIn" alt="Author: Giovana Rodrigues">
+        <img src="https://img.shields.io/static/v1?label=Author&message=Giovana&color=00ba6d&style=for-the-badge&logo=LinkedIn" alt="Author: Giovana Rodrigues">
     </a>
     <a href="https://www.oracle.com/br/">
 		<img  src="https://img.shields.io/static/v1?label=Language&message=Java&color=red&style=for-the-badge&logo=Java"  alt="Language: Java">
