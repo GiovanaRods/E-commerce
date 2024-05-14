@@ -53,8 +53,7 @@ public abstract class Ecommerce {
 	
 	}
 
-	public void visualizar() {
-	
+	public void visualizar() {	
 	System.out.println("***********************************************************");
 	System.out.println("Cor: " + this.cor);
 	System.out.println("Tamanho: " + this.tamanho);
