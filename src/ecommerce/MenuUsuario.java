@@ -1,8 +1,8 @@
 package ecommerce;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import ecommerce.controller.EcommerceController;
 import ecommerce.model.EcommerceProdutos;
 import ecommerce.model.EcommerceUsuario;
@@ -21,12 +21,12 @@ public class MenuUsuario {
 
 		int opcao2 = 0;
 
-		while (true) {
+		while (true) {		
 
 			menu.exibirMenu(opcao2);
 			opcao2 = leia.nextInt();
 			leia.nextLine();
-
+			
 			switch (opcao2) {
 			case 1:
 				usuario++;
@@ -41,9 +41,15 @@ public class MenuUsuario {
 				keyPress();
 				break;
 
-			case 2:
+			case 0:
 				System.out.println("Lista de Usuarios\n");
 				menu.listarUsuarios();
+				keyPress();
+				break;
+				
+			case 2:
+				System.out.println("Lista de Produtos\n");
+				menu.listarProdutos();
 				keyPress();
 				break;
 
@@ -72,21 +78,21 @@ public class MenuUsuario {
 
 			case 7:
 				System.out.println("Voltar ao Menu Principal\n");
-				keyPress();
 				break;
 
 			case 9:
 				System.out.println("Sair\n");
-				keyPress();
-				break;
+				System.out.println("Obrigado e volte sempre!");
+				System.exit(0);
 
 			default:
 				System.out.println("\nOpção Inválida\n");
 				keyPress();
 				break;
-			}
+			} 
 		}
 	}
+	
 
 	private static void keyPress() {
 		try {
@@ -97,7 +103,6 @@ public class MenuUsuario {
 		} catch (IOException e) {
 
 			System.out.println("Você pressionou uma tecla diferente de enter!");
-		}
-
+		} 
 	}
 }

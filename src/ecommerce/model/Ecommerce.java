@@ -14,7 +14,7 @@ public abstract class Ecommerce {
 		this.cor = cor;
 		this.codIDProduto = codIDProduto;
 	}
-
+	
 	public String getTamanho() {
 		return tamanho;
 	}

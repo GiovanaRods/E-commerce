@@ -15,7 +15,7 @@ public class Menu {
 		EcommerceController ecommerce = new EcommerceController();
 
 		String produto, tamanho, cor;
-		int codIDProduto, opcao;
+		int codIDProduto, opcao = 0;
 
 		while (true) {
 
@@ -40,6 +40,8 @@ public class Menu {
 				System.out.println("\nDigite valores inteiros!");
 				leia.nextLine();
 				opcao = 0;
+			} catch (Exception e) {
+				System.out.println("Ocorreu um erro:" + e.getMessage());
 			}
 
 			if (opcao == 9) {
