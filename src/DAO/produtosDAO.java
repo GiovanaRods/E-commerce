@@ -1,12 +1,15 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import ecommerce.controller.EcommerceController;
+import java.util.Scanner;
+
 import ecommerce.model.Ecommerce;
 import factory.connectionfactory;
 
@@ -14,7 +17,7 @@ public class produtosDAO {
 
 	public void save(Ecommerce produto) throws SQLException {
 
-		String sql = "INSERT INTO tb_produtoskimono(nome, tamanho, cor, codigo) VALUES(?, ?, ?, ?)";
+		String sql = "INSERT INTO tb_produtoskimono(produto, tamanho, cor, codigo) VALUES(?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstm = null;
 
@@ -46,6 +49,58 @@ public class produtosDAO {
 		}
 	}
 
+	public static List<Ecommerce> select() {
+		String sql = "SELECT * FROM tb_produtoskimono";
+		List<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
+
+		try (Connection conn = connectionfactory.createConnectionToMySQL();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			while (rs.next()) {
+				Ecommerce produtoL = new Ecommerce(sql, sql, sql, 0);
+				produtoL.setProduto(rs.getString("produto"));
+				produtoL.setTamanho(rs.getString("tamanho"));
+				produtoL.setCor(rs.getString("cor"));
+				produtoL.setCodIDProduto(rs.getInt("codigo"));
+				listaProdutos.add(produtoL);
+			}
+
+			System.out.println("Aqui está a lista: ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listaProdutos;
+
+	}
+
+
+	public static List<Ecommerce> selectByCodigo(int codigo) throws Exception {
+		String sql = "SELECT * FROM tb_produtoskimono WHERE codigo = ?";
+		List<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
+
+		try (Connection conn = connectionfactory.createConnectionToMySQL();
+			PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setInt(1, codigo);
+			
+			 try (ResultSet rs = pstmt.executeQuery()) {
+	                while (rs.next()) {
+	                    Ecommerce produtoL = new Ecommerce(sql, sql, sql, codigo);
+	                    produtoL.setProduto(rs.getString("produto"));
+	                    produtoL.setTamanho(rs.getString("tamanho"));
+	                    produtoL.setCor(rs.getString("cor"));
+	                    produtoL.setCodIDProduto(rs.getInt("codigo"));
+	                    listaProdutos.add(produtoL);
+	                }
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return listaProdutos;
+	    }
+
 	public void update(Ecommerce produto) {
 		String sql = "UPDATE tb_produtoskimono SET nome = ?, tamanho = ?, cor = ?, codigo = ?";
 
@@ -53,22 +108,17 @@ public class produtosDAO {
 		PreparedStatement pstm = null;
 
 		try {
-			// Criar conexão com banco de dados
 			conn = connectionfactory.createConnectionToMySQL();
 
-			// Criar a classe para executar a query
 			pstm = conn.prepareStatement(sql);
 
-			// Adicionar os valores a serem atualizados
 			pstm.setString(1, produto.getProduto());
 			pstm.setString(2, produto.getTamanho());
 			pstm.setString(3, produto.getCor());
 			pstm.setInt(4, produto.getCodIDProduto());
 
-			// Qual id do registro que deseja atualizar
 			pstm.setInt(4, produto.getCodIDProduto());
 
-			// Executar a query
 			pstm.execute();
 		} catch (Exception e) {
 
@@ -117,7 +167,6 @@ public class produtosDAO {
 	public List<Ecommerce> getProdutos() throws SQLException {
 		String sql = "SELECT * FROM tb_produtoskimono";
 		List<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
-		
 
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -129,7 +178,7 @@ public class produtosDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Ecommerce ecommerce = new Ecommerce();
+				Ecommerce ecommerce = new Ecommerce(sql, sql, sql, 0);
 
 				ecommerce.setProduto(rset.getString("nome"));
 				ecommerce.setTamanho(rset.getString("tamanho"));
@@ -153,6 +202,5 @@ public class produtosDAO {
 		}
 
 		return listaProdutos;
-
 	}
 }

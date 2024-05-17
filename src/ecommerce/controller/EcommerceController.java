@@ -2,36 +2,49 @@ package ecommerce.controller;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+
+import DAO.produtosDAO;
 import ecommerce.repository.EcommerceRepository;
 import ecommerce.util.Cores;
 import ecommerce.model.Ecommerce;
 import ecommerce.model.EcommerceUsuario;
+import DAO.produtosDAO;
 
 public class EcommerceController implements EcommerceRepository {
 	Scanner leia = new Scanner(System.in);
 
-	private static ArrayList<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
-	int codIDProduto;
+	List<Ecommerce> listaProdutos = new ArrayList<Ecommerce>();
+	private produtosDAO produtosDao = new produtosDAO();
+	int produtos;
 
 	private static ArrayList<EcommerceUsuario> usuarios = new ArrayList<EcommerceUsuario>();
 	int usuario;
 
 	@Override
 	public void procurarPorID(int codIDProduto) {
-		var produto = buscarNaCollection(codIDProduto);
-		if (produto != null) {
-			produto.visualizar();
-		} else {
-			System.out.println("\nO Produto de número: " + produto.getCodIDProduto() + " não foi encontrada!");
-		}
-
+		List<Ecommerce> listaProdutos;
+		try {
+	        listaProdutos = produtosDAO.selectByCodigo(codIDProduto);
+	        
+	        if (listaProdutos.isEmpty()) {
+	            System.out.println("\nO Produto de número: " + codIDProduto + " não foi encontrado!");
+	        } else {
+	            for (Ecommerce produtoL : listaProdutos) {
+	                produtoL.visualizar();
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	@Override
 	public void listarProdutos() {
-		for (var produto : listaProdutos) {
-			produto.visualizar();
+		List<Ecommerce> produtos = produtosDAO.select();
+		for (Ecommerce produtoL : produtos) {
+			produtoL.visualizar();
 		}
 	}
 
@@ -42,9 +55,9 @@ public class EcommerceController implements EcommerceRepository {
 	}
 
 	@Override
-	public void cadastrar(Ecommerce produto) {
-		listaProdutos.add(produto);
-		System.out.println("\nO produto número: " + produto.getCodIDProduto() + " foi criado com sucesso!");
+	public void cadastrar(Ecommerce produtoDAO) {
+		listaProdutos.add(produtoDAO);
+		System.out.println("\nO produto número: " + produtoDAO.getCodIDProduto() + " foi criado com sucesso!");
 	}
 
 	public void cadastrarUsuario(EcommerceUsuario usuario) {
@@ -54,13 +67,13 @@ public class EcommerceController implements EcommerceRepository {
 	}
 
 	@Override
-	public void atualizar(Ecommerce produto) {
-		var buscaProduto = buscarNaCollection(produto.getCodIDProduto());
+	public void atualizar(Ecommerce produtoDAO) {
+		var buscaProduto = buscarNaCollection(produtoDAO.getCodIDProduto());
 		if (buscaProduto != null) {
-			listaProdutos.set(listaProdutos.indexOf(buscaProduto), produto);
-			System.out.println("\nO Produto número: " + produto.getCodIDProduto() + " foi atualizado com sucesso!");
+			listaProdutos.set(listaProdutos.indexOf(buscaProduto), produtoDAO);
+			System.out.println("\nO Produto número: " + produtoDAO.getCodIDProduto() + " foi atualizado com sucesso!");
 		} else {
-			System.out.println("\nO Produto número: " + produto.getCodIDProduto() + " não foi encontrada!");
+			System.out.println("\nO Produto número: " + produtoDAO.getCodIDProduto() + " não foi encontrada!");
 		}
 	}
 
@@ -102,9 +115,6 @@ public class EcommerceController implements EcommerceRepository {
 	public Ecommerce buscarNaCollection(int codIDProduto) {
 		for (var produto : listaProdutos) {
 			if (produto.getCodIDProduto() == codIDProduto) {
-				return produto;
-			} else {
-				System.out.println("O produto não foi encontrado!");
 			}
 		}
 		return null;
@@ -125,9 +135,9 @@ public class EcommerceController implements EcommerceRepository {
 		System.out.println("*****************************************************");
 		System.out.println("Entre com a opção desejada:                          ");
 		System.out.println("                                                     " + Cores.TEXT_RESET);
-		
-		try { 
-			
+
+		try {
+
 		} catch (InputMismatchException e) {
 			System.out.println("\nDigite valores inteiros!");
 		}
@@ -137,4 +147,5 @@ public class EcommerceController implements EcommerceRepository {
 	public int gerarUsuario() {
 		return usuario++;
 	}
+
 }

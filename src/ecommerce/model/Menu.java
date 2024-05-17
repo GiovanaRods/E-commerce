@@ -1,9 +1,11 @@
 package ecommerce.model;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import DAO.produtosDAO;
 import ecommerce.controller.EcommerceController;
 import ecommerce.util.Cores;
 
@@ -54,7 +56,7 @@ public class Menu {
 
 			case 1:
 				System.out.println("Cadastrar Produto\n");
-
+				produtosDAO produtosDao = new produtosDAO();
 				leia.nextLine();
 
 				System.out.println("Digite o nome do kimono: ");
@@ -70,6 +72,12 @@ public class Menu {
 				codIDProduto = leia.nextInt();
 
 				ecommerce.cadastrar(new EcommerceProdutos(produto, tamanho, cor, codIDProduto));
+				Ecommerce produtos = new Ecommerce(produto, tamanho, cor, codIDProduto);
+				try {produtosDao.save(produtos); 
+				} catch (SQLException e) {
+					 e.printStackTrace();
+					 }
+				
 				keyPress();
 				break;
 

@@ -1,6 +1,8 @@
 package ecommerce.model;
 
-public abstract class Ecommerce {
+import DAO.produtosDAO;
+
+public class Ecommerce {
 
 	private String tamanho;
 	private String produto;
@@ -31,11 +33,6 @@ public abstract class Ecommerce {
 		this.cor = cor;
 	}
 
-	public Ecommerce(int codIDProduto) {
-		super();
-		this.codIDProduto = codIDProduto;
-	}
-
 	public int getCodIDProduto() {
 		return codIDProduto;
 	}
@@ -55,10 +52,11 @@ public abstract class Ecommerce {
 
 	public void visualizar() {	
 	System.out.println("***********************************************************");
-	System.out.println("Cor: " + this.cor);
-	System.out.println("Tamanho: " + this.tamanho);
 	System.out.println("Produto: " + this.produto);	
-	System.out.println("Numero do Produto: " + this.codIDProduto);
+	System.out.println("Tamanho: " + this.tamanho);
+	System.out.println("Cor: " + this.cor);
+	System.out.println("Código do Produto: " + this.codIDProduto);
 	}
+	
 }
 
